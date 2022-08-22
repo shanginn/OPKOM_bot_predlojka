@@ -57,6 +57,14 @@ class Workflow {
             voteType,
         );
     }
+
+    public static async getVotesCount(
+        postId: number,
+    ) {
+        const workflow = await this.getWorkflow(`${postId}`);
+
+        return await workflow.query('countVotes');
+    }
 }
 
 export default Workflow;
