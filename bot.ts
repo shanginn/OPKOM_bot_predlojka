@@ -6,9 +6,13 @@ import workflow from "./workflow";
 import {match} from "ts-pattern";
 import {VoteType} from "./VoteType";
 
-const groupId = '-708145852';
+const groupId = process.env.PREDLOJKA_CHAT_ID;
+if (!groupId) {
+    throw new Error("PREDLOJKA_CHAT_ID is not set");
+}
+
 const token = process.env.TELEGRAM_BOT_TOKEN
-if (token === undefined) {
+if (!token) {
     throw new Error('TELEGRAM_BOT_TOKEN must be provided!')
 }
 
