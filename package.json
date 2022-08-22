@@ -32,6 +32,7 @@
   "scripts": {
     "dev": "ts-node bot.ts",
     "start": "ts-node bot.ts",
-    "build": "tsc -p ."
+    "build": "tsc -p .",
+    "docker-install": "docker compose run --rm --no-deps bot yarn install"
   }
 }

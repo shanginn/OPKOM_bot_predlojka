@@ -7,9 +7,9 @@ import {match} from "ts-pattern";
 import {VoteType} from "./VoteType";
 
 const groupId = '-708145852';
-const token = process.env.BOT_TOKEN
+const token = process.env.TELEGRAM_BOT_TOKEN
 if (token === undefined) {
-    throw new Error('BOT_TOKEN must be provided!')
+    throw new Error('TELEGRAM_BOT_TOKEN must be provided!')
 }
 
 const keyboard = Markup.inlineKeyboard([
