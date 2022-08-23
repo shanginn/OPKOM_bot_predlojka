@@ -16,15 +16,6 @@ if (!token) {
     throw new Error('TELEGRAM_BOT_TOKEN must be provided!')
 }
 
-// votes is object with botesttypes keys
-function getKeyboard(votes: any) {
-    return Markup.inlineKeyboard([
-        Markup.button.callback(`👍 ${votes.UP || ''}`, '👍'),
-        Markup.button.callback(`👎 ${votes.DOWN || ''}`, '👎')
-    ])
-}
-
-
 const bot = new Telegraf(token)
 
 bot.action(['👍', '👎'], async (ctx) => {
@@ -50,12 +41,6 @@ bot.action(['👍', '👎'], async (ctx) => {
 
     try {
         await workflow.vote(messageId, voterId, voteType);
-
-        const votesCount = await workflow.getVotesCount(messageId);
-
-        await ctx.editMessageReplyMarkup(
-            getKeyboard(votesCount).reply_markup
-        );
     } catch (e) {
         console.error(e);
     }
@@ -77,7 +62,6 @@ bot.on('message', async (ctx) => {
             groupId,
             ctx.message.chat.id,
             ctx.message.message_id,
-            getKeyboard({UP: 0, DOWN: 0}),
         );
 
         await workflow.startPostWorkflow(
