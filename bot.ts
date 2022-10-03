@@ -57,6 +57,8 @@ bot.on('message', async (ctx) => {
         return;
     }
 
+    console.log(`New message. Author ${ctx.message.from.username} (${ctx.message.from.id})`);
+
     try {
         const copiedMessage = await ctx.telegram.copyMessage(
             groupId,

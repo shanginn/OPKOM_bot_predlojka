@@ -26,7 +26,7 @@ class Workflow {
     ) {
         const client = await this.getClient();
 
-        console.log(`Starting workflow with id ${messageId}`)
+        console.log(`Starting workflow with id ${messageId}`);
 
         client.start('PostWorkflow', {
             taskQueue: 'default',
