@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
 
-import { Telegraf, Markup } from "telegraf";
+import {Telegraf, Markup, Telegram} from "telegraf";
 import Workflow from "./workflow";
 import workflow from "./workflow";
 import {match} from "ts-pattern";
@@ -57,7 +57,15 @@ bot.on('message', async (ctx) => {
         return;
     }
 
-    console.log(`New message. Author ${ctx.message.from.username} (${ctx.message.from.id})`);
+    const chatMember = await bot.telegram.getChatMember(groupId, ctx.message.from.id);
+
+    console.log(`New message. Author ${ctx.message.from.username} (${ctx.message.from.id}). Member status: ${chatMember.status}`);
+    console.log(chatMember);
+
+
+    if (!chatMember) {
+        return;
+    }
 
     try {
         const copiedMessage = await ctx.telegram.copyMessage(
