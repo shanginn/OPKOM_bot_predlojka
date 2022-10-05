@@ -5,6 +5,7 @@ import Workflow from "./workflow";
 import workflow from "./workflow";
 import {match} from "ts-pattern";
 import {VoteType} from "./VoteType";
+import {ChatMemberLeft} from "typegram/manage";
 
 const groupId = process.env.PREDLOJKA_CHAT_ID;
 if (!groupId) {
@@ -63,7 +64,7 @@ bot.on('message', async (ctx) => {
     console.log(chatMember);
 
 
-    if (!chatMember) {
+    if (chatMember.status === "left" || chatMember.status === "kicked") {
         return;
     }
 
