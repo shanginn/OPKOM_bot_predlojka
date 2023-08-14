@@ -7,4 +7,4 @@ WORKDIR /bot
 COPY --link . .
 RUN pnpm install
 
-CMD ["pnpm", "start"]
+ENTRYPOINT ["pnpm", "start"]
