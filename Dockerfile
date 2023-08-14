@@ -5,6 +5,6 @@ RUN corepack enable && corepack prepare --activate pnpm@latest && pnpm config se
 WORKDIR /bot
 
 COPY --link . .
-RUN pnpm install
+RUN pnpm install && pnpm build
 
-ENTRYPOINT ["pnpm", "start"]
+CMD ["node", "bot.js"]
