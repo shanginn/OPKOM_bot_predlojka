@@ -1,0 +1,17 @@
+replicaCount: 1
+
+image:
+  repository: ghcr.io/shanginn/opkom_bot_predlojka
+  pullPolicy: Always
+  tag: "latest"
+
+serviceAccount:
+  create: true
+  name: "bot"
+
+env:
+  TEMPORAL_CLI_ADDRESS: "temporal-frontend.temporal:7233"
+  PREDLOJKA_CHAT_ID: "@OPKOM_predlojka"
+
+envSecrets:
+  TELEGRAM_BOT_TOKEN: ""
