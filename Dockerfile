@@ -1,12 +1,10 @@
-FROM node:16-alpine
-RUN apk update --no-cache
+FROM node:lts-alpine AS installer
+RUN apk add --no-cache libc6-compat && apk update
+RUN corepack enable && corepack prepare --activate pnpm@latest && pnpm config set store-dir .pnpm-store
 
 WORKDIR /bot
-VOLUME /bot
 
-COPY package.json .
-COPY yarn.lock .
+COPY --link . .
+RUN pnpm install
 
-RUN yarn install
-
-CMD ["yarn", "start"]
+CMD ["pnpm", "start"]

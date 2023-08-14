@@ -5,7 +5,8 @@ import Workflow from "./workflow";
 import workflow from "./workflow";
 import {match} from "ts-pattern";
 import {VoteType} from "./VoteType";
-import {ChatMemberLeft} from "typegram/manage";
+import { callbackQuery } from "telegraf/filters";
+import { CallbackQuery } from "telegraf/typings/core/types/typegram";
 
 const groupId = process.env.PREDLOJKA_CHAT_ID;
 if (!groupId) {
@@ -20,7 +21,11 @@ if (!token) {
 const bot = new Telegraf(token)
 
 bot.action(['👍', '👎'], async (ctx) => {
-    const query = ctx.update.callback_query;
+    const query = ctx.callbackQuery as CallbackQuery.DataQuery;
+    if (!ctx.has(callbackQuery("data"))) {
+        return;
+    }
+
     const message = query.message;
 
     if (!message) {

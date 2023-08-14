@@ -2,7 +2,7 @@ version: '3.9'
 
 services:
   bot:
-    image: node:16-alpine
+    build: .
     #user: 1001:1001
     extra_hosts:
       - "host.docker.internal:host-gateway"
@@ -10,4 +10,4 @@ services:
     working_dir: /bot
     volumes:
       - .:/bot:delegated
-    command: yarn start
+    command: pnpm start
