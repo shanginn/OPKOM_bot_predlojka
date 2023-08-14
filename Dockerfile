@@ -1,8 +1,10 @@
-FROM oven/bun:latest
+FROM node:lts-alpine AS installer
+RUN apk add --no-cache libc6-compat && apk update
+RUN corepack enable && corepack prepare --activate pnpm@latest && pnpm config set store-dir .pnpm-store
 
 WORKDIR /bot
 
 COPY --link . .
-RUN bun install
+RUN pnpm install
 
-CMD ["bun", "bot.ts"]
+CMD ["pnpm", "start"]

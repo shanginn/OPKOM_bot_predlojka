@@ -11,7 +11,7 @@ serviceAccount:
 
 env:
   TEMPORAL_CLI_ADDRESS: "temporal-frontend.temporal:7233"
-  PREDLOJKA_CHAT_ID: "@OPKOM_predlojka"
+  PREDLOJKA_CHAT_ID: "-1001780782284"
 
 envSecrets:
   TELEGRAM_BOT_TOKEN: ""
