@@ -56,3 +56,4 @@ jobs:
           cd helm
           helm upgrade bot -f values.yaml . \
             --set=envSecrets.TELEGRAM_BOT_TOKEN="${TELEGRAM_BOT_TOKEN}"
+          kubectl rollout restart deployment
