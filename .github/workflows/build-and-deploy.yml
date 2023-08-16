@@ -52,6 +52,8 @@ jobs:
           chmod 600 ~/.kube/config
 
       - name: Deploy app
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
         run: |
           cd helm
           helm upgrade bot -f values.yaml . \
